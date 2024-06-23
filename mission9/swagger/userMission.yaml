@@ -1,0 +1,87 @@
+paths:
+  /user/mission:
+    post:
+      tags:
+        - UserMission
+      summary: 미션 추가
+      parameters:
+      - name: addMission
+        in: body
+        required: true
+        schema:
+          properties:
+            user:
+              type: integer
+              description: 유저 id
+              example: 1
+            mission:
+              type: integer
+              description: 미션 id
+              example: 1
+            status:
+              type: string
+              description: 미션 상태
+              example: 도전 중
+              
+      responses:
+        '200':
+          description: 미션 추가 성공!
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 2000
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: object
+                example: {
+                  "user": "swagger",
+                  "mission": 1,
+                  "reward": 500,
+                  "status": "도전 중"
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
